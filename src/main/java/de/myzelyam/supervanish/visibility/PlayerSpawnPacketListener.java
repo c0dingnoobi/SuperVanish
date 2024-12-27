@@ -15,7 +15,7 @@ public class PlayerSpawnPacketListener extends PacketAdapter {
     private final SuperVanish plugin;
 
     public PlayerSpawnPacketListener(SuperVanish plugin) {
-        super(plugin, ListenerPriority.NORMAL, NAMED_ENTITY_SPAWN);
+        super(plugin, ListenerPriority.NORMAL, SPAWN_ENTITY);
         this.plugin = plugin;
     }
 
@@ -30,7 +30,7 @@ public class PlayerSpawnPacketListener extends PacketAdapter {
     public void onPacketSending(PacketEvent event) {
         // This prevents packet leaking vanished players around a non-admin player when he logs in
         try {
-            if (event.getPacketType() == NAMED_ENTITY_SPAWN) {
+            if (event.getPacketType() == SPAWN_ENTITY) {
                 Player p = event.getPlayer();
                 Entity entity = event.getPacket().getEntityModifier(p.getWorld()).read(0);
                 if (entity instanceof Player) {
