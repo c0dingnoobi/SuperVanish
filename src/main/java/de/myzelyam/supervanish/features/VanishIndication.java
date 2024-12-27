@@ -162,10 +162,6 @@ public class VanishIndication extends Feature {
                         : EnumWrappers.NativeGameMode.fromBukkit(change.getGameMode()),
                 WrappedChatComponent.fromText(change.getPlayerListName())));
         packet.getPlayerInfoDataLists().write(0, data);
-        try {
-            ProtocolLibrary.getProtocolManager().sendServerPacket(p, packet);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException("Cannot send packet", e);
-        }
+        ProtocolLibrary.getProtocolManager().sendServerPacket(p, packet);
     }
 }
